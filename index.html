@@ -1,33 +1,77 @@
 <!DOCTYPE html>
 
-<html class="light" lang="th"><head>
+<html class="light" lang="en"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>The Ephemeral Gourmet - All-in-One</title>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>The Ephemeral Gourmet - Unified Master App</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
-                    colors: {
-                        "primary": "#775a19",
-                        "primary-container": "#c5a059",
-                        "on-primary": "#ffffff",
+                    "colors": {
+                        "inverse-primary": "#e9c176",
                         "background": "#fbf9f5",
-                        "surface": "#ffffff",
+                        "secondary-fixed-dim": "#d7c4a5",
+                        "primary": "#775a19",
+                        "surface": "#fbf9f5",
+                        "surface-tint": "#775a19",
+                        "surface-container-low": "#f5f3ef",
+                        "inverse-surface": "#30312e",
+                        "surface-container": "#efeeea",
                         "on-surface": "#1b1c1a",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#4e3700",
+                        "on-tertiary-fixed-variant": "#304671",
+                        "surface-container-high": "#eae8e4",
+                        "primary-fixed": "#ffdea5",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#233a65",
+                        "on-secondary-container": "#716248",
+                        "tertiary": "#485e8b",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#f4e0bf",
+                        "on-background": "#1b1c1a",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#5d4201",
+                        "tertiary-fixed": "#d8e2ff",
+                        "primary-fixed-dim": "#e9c176",
+                        "tertiary-container": "#8fa5d6",
+                        "surface-dim": "#dbdad6",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#001a41",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e4e2de",
+                        "inverse-on-surface": "#f2f0ed",
+                        "outline": "#7f7667",
                         "on-surface-variant": "#4e4639",
+                        "surface-container-highest": "#e4e2de",
+                        "on-secondary-fixed": "#241a06",
+                        "primary-container": "#c5a059",
+                        "on-secondary-fixed-variant": "#52452d",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#fbf9f5",
+                        "tertiary-fixed-dim": "#b0c6f9",
+                        "secondary-container": "#f4e0bf",
                         "outline-variant": "#d1c5b4",
+                        "on-primary-fixed": "#261900",
+                        "secondary": "#6b5c43"
                     },
-                    fontFamily: {
-                        "headline": ["Noto Serif", "serif"],
-                        "body": ["Manrope", "sans-serif"],
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
                     }
                 }
             }
@@ -35,291 +79,254 @@
     </script>
 <style>
         body { font-family: 'Manrope', sans-serif; background-color: #fbf9f5; }
-        .font-serif { font-family: 'Noto Serif', serif; }
-        .gold-gradient { background: linear-gradient(135deg, #775a19 0%, #c5a059 100%); }
-        .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); }
-        .page-container { min-height: 100vh; transition: opacity 0.5s ease; }
+        .serif { font-family: 'Noto Serif', serif; }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
-        .fill-icon { font-variation-settings: 'FILL' 1; }
-        [v-cloak] { display: none; }
-        .fade-out { transition: opacity 1s ease; opacity: 0; pointer-events: none; }
+        .glass { background: rgba(251, 249, 245, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="text-on-surface">
-<div id="app" v-cloak="">
-<!-- Notification Overlay for Shop Closed -->
-<div class="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/40 backdrop-blur-md" v-if="!shopOpen &amp;&amp; view !== 'admin' &amp;&amp; view !== 'admin_login'">
-<div class="bg-white rounded-[2rem] p-10 max-w-sm w-full text-center shadow-2xl border border-primary/10">
-<div class="w-20 h-20 gold-gradient rounded-full flex items-center justify-center text-white mx-auto mb-6">
-<span class="material-symbols-outlined text-4xl">store_front</span>
+<!-- Top Navigation Anchor (Desktop Only) -->
+<nav class="fixed top-0 w-full border-b border-amber-200/20 bg-stone-50/80 dark:bg-stone-900/80 backdrop-blur-md shadow-[0_8px_24px_rgba(119,90,25,0.06)] h-16 px-8 flex justify-between items-center z-50">
+<div class="text-xl font-serif italic text-amber-800 dark:text-amber-400">The Ephemeral Gourmet</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-amber-800 dark:text-amber-300 border-b-2 border-amber-600 dark:border-amber-400 font-medium font-serif font-light tracking-wide py-2" href="#">Order Management</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-amber-700 transition-colors font-serif font-light tracking-wide py-2" href="#">Shop Management</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-amber-700 transition-colors font-serif font-light tracking-wide py-2" href="#">Sales Statistics</a>
 </div>
-<h2 class="font-serif text-2xl mb-2 text-primary">Shop is Currently Closed</h2>
-<p class="text-on-surface-variant mb-8 text-sm">We are refining our flavors. Please return during our service hours.</p>
-<button @click="view = 'admin_login'" class="text-primary font-bold text-xs uppercase tracking-widest">Staff Entrance</button>
-</div>
-</div>
-<!-- Header -->
-<header class="fixed top-0 left-0 w-full z-50 h-20 glass border-b border-primary/10 flex justify-between items-center px-6 md:px-12">
-<div @click="resetToHome" class="font-serif italic text-xl md:text-2xl text-primary cursor-pointer">The Ephemeral Gourmet</div>
-<div class="flex items-center gap-4">
-<div class="hidden md:flex gap-6 mr-6" v-if="view === 'admin'">
-<button :class="adminSubView === 'orders' ? 'text-primary' : 'text-zinc-400'" @click="adminSubView = 'orders'" class="font-serif text-lg">Orders</button>
-<button :class="adminSubView === 'stats' ? 'text-primary' : 'text-zinc-400'" @click="adminSubView = 'stats'" class="font-serif text-lg">Statistics</button>
-</div>
-<button @click="toggleAdmin" class="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center text-primary hover:bg-primary/5 transition-colors">
-<span class="material-symbols-outlined">{{ view.includes('admin') ? 'logout' : 'account_circle' }}</span>
-</button>
-</div>
-</header>
-<!-- Table Selection Screen -->
-<main class="pt-32 pb-24 px-6 max-w-6xl mx-auto page-container" v-if="view === 'tables'">
-<section class="mb-12">
-<h1 class="font-serif text-4xl md:text-6xl mb-4">Welcome to <span class="italic text-primary">Excellence</span></h1>
-<p class="text-on-surface-variant max-w-xl">Please select your preferred table to begin your curated culinary journey.</p>
-</section>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-<div :key="table.id" @click="selectTable(table)" class="group bg-white rounded-3xl p-6 shadow-sm border border-transparent hover:border-primary/20 transition-all cursor-pointer" v-for="table in tables">
-<div class="aspect-video mb-6 overflow-hidden rounded-2xl relative">
-<img :src="table.img" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
-<div class="absolute top-4 right-4 bg-primary/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold">AVAILABLE</div>
-</div>
-<div class="flex justify-between items-end">
-<div>
-<h3 class="font-serif text-2xl text-on-surface">Table {{ table.id }}</h3>
-<p class="text-on-surface-variant text-sm">{{ table.desc }}</p>
-</div>
-<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
-</div>
-</div>
-</div>
-</main>
-<!-- Menu Ordering Screen -->
-<main class="pt-32 pb-32 px-6 max-w-6xl mx-auto page-container" v-if="view === 'menu'">
-<div class="flex items-center gap-4 mb-12">
-<button @click="view = 'tables'" class="text-primary"><span class="material-symbols-outlined">arrow_back</span></button>
-<h2 class="font-serif text-3xl">Table {{ currentTable.id }} Menu</h2>
-</div>
-<div :key="cName" class="mb-16" v-for="(category, cName) in menu">
-<h3 class="font-serif text-2xl mb-8 border-b border-primary/10 pb-4 text-primary">{{ cName }}</h3>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-<div :key="item.name" class="bg-white rounded-2xl p-4 shadow-sm flex flex-col" v-for="item in category">
-<img :src="item.img" class="w-full h-48 object-cover rounded-xl mb-4"/>
-<div class="flex-grow">
-<h4 class="font-bold text-lg mb-1">{{ item.name }}</h4>
-<p class="text-sm text-on-surface-variant italic mb-4">{{ item.desc }}</p>
-</div>
-<div class="flex justify-between items-center mt-auto">
-<span class="text-primary font-bold">฿{{ item.price }}</span>
-<!-- Add to Cart / Quantity Logic -->
-<div class="flex items-center gap-4 bg-primary/5 rounded-full px-4 py-2 border border-primary/20" v-if="getCartQty(item.name) &gt; 0">
-<button @click="removeFromCart(item.name)" class="text-primary text-sm font-bold">－</button>
-<span class="font-bold text-sm w-4 text-center">{{ getCartQty(item.name) }}</span>
-<button @click="addToCart(item)" class="text-primary text-sm font-bold">＋</button>
-</div>
-<button @click="addToCart(item)" class="w-10 h-10 gold-gradient rounded-full text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform" v-else="">
-<span class="material-symbols-outlined text-sm">shopping_cart</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-<!-- Cart Bar -->
-<div class="fixed bottom-10 left-1/2 -translate-x-1/2 w-[90%] max-w-md z-40" v-if="cartTotal &gt; 0">
-<div @click="checkout" class="gold-gradient rounded-full py-4 px-8 flex justify-between items-center text-white shadow-2xl cursor-pointer hover:scale-[1.02] transition-transform">
-<div class="flex items-center gap-4">
-<span class="material-symbols-outlined fill-icon">shopping_bag</span>
-<span class="font-bold">Check out ({{ cartTotal }} items)</span>
-</div>
-<span class="font-bold text-lg">฿{{ cartPrice }}</span>
-</div>
-</div>
-</main>
-<!-- Order Status / Locked Popup -->
-<div class="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/40 backdrop-blur-md page-container" v-if="view === 'order_status'">
-<div class="bg-white rounded-[2.5rem] overflow-hidden w-full max-w-md shadow-2xl relative">
-<div class="h-40 relative">
-<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWEzl9rbcFVdQVO-pYgprDq4UPCsQsu23_-EOYe_vT2_T_uubLLe4R3DcYkYss-7kXsf4kWCFbNX3DPwTeJFjse9dZkkvDY6zT09u3RbNuV0KOvxPy522PFTvuaGxFlX2QAof4bToyqE0GuYko0s-V7UlLItg76_-N4WtL3Z-VojoSfv2bRIisdKe48Obws2SWxVHy4gkHfmvid3e189a51IE3l15XBhN40DLBnhR4usUixMfa0KnS_x0gpBRgUh4EaVf86iK9vJ4"/>
-<div class="absolute inset-0 bg-gradient-to-t from-white to-transparent"></div>
-</div>
-<div class="px-8 pb-10 -mt-10 relative text-center">
-<div class="w-20 h-20 gold-gradient rounded-full flex items-center justify-center text-white mx-auto shadow-lg mb-6">
-<span class="material-symbols-outlined text-3xl fill-icon">restaurant</span>
-</div>
-<h2 class="font-serif text-3xl mb-1">ขอบคุณที่ใช้บริการ</h2>
-<p class="text-[10px] tracking-widest text-primary font-bold uppercase mb-8">Order Confirmed</p>
-<div class="bg-primary/5 rounded-2xl p-6 border border-primary/10 mb-8">
-<p class="text-xs text-on-surface-variant mb-1 uppercase tracking-tighter">Queue Number</p>
-<p class="font-serif text-5xl text-primary font-bold mb-4">#{{ orderId.toString().padStart(4, '0') }}</p>
-<div class="flex items-center justify-center gap-3">
-<span class="flex h-2 w-2 relative">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-</span>
-<p class="font-bold text-sm">Status: <span class="text-primary italic">{{ currentOrderStatus }}</span></p>
-</div>
-</div>
-<p class="text-xs text-on-surface-variant mb-8 px-6 leading-relaxed">Please wait a moment while our chefs prepare your gourmet experience. You will be notified when your order is ready.</p>
-<button :class="currentOrderStatus === 'Completed' ? 'gold-gradient text-white' : 'bg-zinc-100 text-zinc-400 cursor-not-allowed'" @click="currentOrderStatus === 'Completed' ? resetToHome() : null" class="w-full py-4 rounded-full font-bold uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-2">
-                    DONE <span class="material-symbols-outlined text-sm" v-if="currentOrderStatus !== 'Completed'">lock</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Admin Login -->
-<main class="pt-32 px-6 flex items-center justify-center page-container" v-if="view === 'admin_login'">
-<div class="bg-white p-10 rounded-[2rem] shadow-xl border border-primary/10 w-full max-w-sm text-center">
-<h2 class="font-serif text-3xl mb-8">Admin Access</h2>
-<input class="w-full text-center text-3xl tracking-[1em] py-4 rounded-xl border-zinc-200 focus:ring-primary focus:border-primary mb-8 font-mono" maxlength="4" placeholder="Enter Passcode" type="password" v-model="passcode"/>
-<button @click="login" class="w-full py-4 gold-gradient text-white rounded-full font-bold tracking-widest uppercase shadow-lg">Login</button>
-<button @click="view = 'tables'" class="mt-4 text-xs text-zinc-400 font-bold uppercase">Back to Customer Site</button>
-</div>
-</main>
-<!-- Admin Dashboard -->
-<main class="pt-28 pb-20 px-4 md:px-12 max-w-7xl mx-auto page-container" v-if="view === 'admin'">
-<!-- Dashboard Toolbar -->
-<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-<div>
-<h1 class="font-serif text-4xl md:text-5xl mb-2">{{ adminSubView === 'orders' ? 'Kitchen Command' : 'Sales Analytics' }}</h1>
-<p class="text-on-surface-variant">{{ activeOrderCount }} active orders currently in progress.</p>
-</div>
-<div class="flex items-center gap-4">
-<div class="flex items-center gap-3 bg-white px-6 py-3 rounded-full border border-primary/20 shadow-sm">
-<span class="text-xs font-bold uppercase text-primary">Shop {{ shopOpen ? 'Open' : 'Closed' }}</span>
-<div :class="shopOpen ? 'bg-primary' : 'bg-zinc-200'" @click="toggleShop" class="w-12 h-6 rounded-full relative cursor-pointer transition-colors">
-<div :class="shopOpen ? 'translate-x-6' : 'translate-x-1'" class="absolute top-1 w-4 h-4 bg-white rounded-full transition-transform shadow-sm"></div>
-</div>
-</div>
-</div>
-</div>
-<!-- Orders View -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" v-if="adminSubView === 'orders'">
-<div :id="'order-'+order.key" :key="order.key" class="bg-white rounded-[2rem] p-6 shadow-sm border border-primary/5 flex flex-col gap-4 relative" v-for="order in activeOrders">
-<div class="flex justify-between items-start">
-<div>
-<span class="bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-md mb-2 inline-block">Table {{ order.table }}</span>
-<h4 class="font-serif text-xl">Order #{{ order.id.toString().padStart(4, '0') }}</h4>
-</div>
-<span class="text-xs text-zinc-400">{{ order.time }}</span>
-</div>
-<div class="space-y-2 py-4 border-y border-zinc-100 flex-grow">
-<div class="flex justify-between text-sm" v-for="item in order.items">
-<span>{{ item.qty }}x {{ item.name }}</span>
-<span class="text-primary font-bold">฿{{ item.price * item.qty }}</span>
-</div>
-</div>
-<div class="grid grid-cols-1 gap-2 mt-2">
-<button :class="order.status === 'Received' ? 'gold-gradient text-white' : 'bg-zinc-100 text-zinc-400 line-through'" @click="updateOrderStatus(order, 'Cooking')" class="py-3 rounded-xl font-bold text-xs uppercase tracking-widest shadow-md">
-                        {{ order.status === 'Received' ? 'START COOKING' : 'RECEIVED' }}
-                    </button>
-<button :class="order.status === 'Cooking' ? 'gold-gradient text-white' : 'border border-zinc-100 text-zinc-300'" @click="updateOrderStatus(order, 'Completed')" class="py-3 rounded-xl font-bold text-xs uppercase tracking-widest">
-                        MARK COMPLETE
-                    </button>
-</div>
-</div>
-</div>
-<!-- Stats View -->
-<div class="space-y-8" v-if="adminSubView === 'stats'">
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<div class="bg-white p-8 rounded-3xl shadow-sm border border-primary/5">
-<p class="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-2">Total Revenue</p>
-<h3 class="font-serif text-4xl text-primary">฿{{ totalSales }}</h3>
-</div>
-<div class="bg-white p-8 rounded-3xl shadow-sm border border-primary/5">
-<p class="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-2">Orders Today</p>
-<h3 class="font-serif text-4xl text-on-surface">{{ salesHistory.length }}</h3>
-</div>
-<div class="bg-white p-8 rounded-3xl shadow-sm border border-primary/5">
-<p class="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-2">Avg. Ticket</p>
-<h3 class="font-serif text-4xl text-on-surface">฿{{ salesHistory.length ? Math.round(totalSales / salesHistory.length) : 0 }}</h3>
-</div>
-</div>
-<div class="bg-white rounded-[2rem] p-8 border border-primary/5">
-<h3 class="font-serif text-2xl mb-6">Recent Transactions</h3>
-<div class="overflow-x-auto">
-<table class="w-full text-left">
-<thead>
-<tr class="text-[10px] font-bold uppercase tracking-widest text-zinc-400 border-b border-zinc-100">
-<th class="pb-4">Date</th>
-<th class="pb-4">Table</th>
-<th class="pb-4">Items</th>
-<th class="pb-4 text-right">Amount</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-zinc-50">
-<tr :key="sale.id" class="text-sm" v-for="sale in salesHistory.slice().reverse()">
-<td class="py-4">{{ sale.date }}</td>
-<td class="py-4 font-bold">Table {{ sale.table }}</td>
-<td class="py-4">{{ sale.items.length }} items</td>
-<td class="py-4 text-right font-bold text-primary">฿{{ sale.total }}</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</main>
-<!-- Mobile Nav Shell -->
-<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-6 pt-2 bg-white/70 backdrop-blur-md border-t border-primary/10 shadow-2xl" v-if="view === 'tables' || view === 'menu'">
-<div :class="view === 'tables' ? 'text-primary scale-110' : 'text-zinc-400'" @click="view = 'tables'" class="flex flex-col items-center p-2 transition-all">
-<span class="material-symbols-outlined fill-icon">restaurant_menu</span>
-<span class="text-[8px] font-bold uppercase tracking-widest mt-1">Menu</span>
-</div>
-<div class="text-zinc-300 flex flex-col items-center p-2 opacity-50">
-<span class="material-symbols-outlined">event_available</span>
-<span class="text-[8px] font-bold uppercase tracking-widest mt-1">Booking</span>
-</div>
-<div class="text-zinc-300 flex flex-col items-center p-2 opacity-50">
-<span class="material-symbols-outlined">receipt_long</span>
-<span class="text-[8px] font-bold uppercase tracking-widest mt-1">Orders</span>
-</div>
-<div @click="toggleAdmin" class="text-zinc-400 flex flex-col items-center p-2">
-<span class="material-symbols-outlined">person</span>
-<span class="text-[8px] font-bold uppercase tracking-widest mt-1">Staff</span>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-stone-500 cursor-pointer p-2 hover:bg-stone-100/50 rounded-full transition-all">notifications</span>
+<span class="material-symbols-outlined text-stone-500 cursor-pointer p-2 hover:bg-stone-100/50 rounded-full transition-all">account_circle</span>
 </div>
 </nav>
+<!-- Side Navigation Anchor (Desktop Only) -->
+<aside class="hidden lg:flex fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-stone-50 border-r border-amber-100/10 flex-col py-6 px-4 gap-4 z-40">
+<div class="px-2 mb-4">
+<h2 class="font-serif text-amber-800 text-lg">Maitre d' Console</h2>
+<p class="text-stone-400 text-xs uppercase tracking-widest font-semibold">Evening Service</p>
 </div>
-<!-- Vue Implementation -->
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<script>
-    const { createApp, ref, computed, onMounted, watch } = Vue;
-
-    createApp({
-        setup() {
-            // Firebase Config
-            const firebaseConfig = {
-                apiKey: "AIzaSyCyFKuCgZt5PGPtQ1TkBfXWc7jeOpJ1J2U",
-                authDomain: "restaurant-ordered.firebaseapp.com",
-                projectId: "restaurant-ordered",
-                storageBucket: "restaurant-ordered.firebasestorage.app",
-                messagingSenderId: "900590712017",
-                appId: "1:900590712017:web:8abd6c558e2183d937c1f0",
-                databaseURL: "https://restaurant-ordered-default-rtdb.firebaseio.com/"
-            };
-
-            // Initialize Firebase
-            if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-            const db = firebase.database();
-
-            // State
-            const view = ref('tables');
-            const adminSubView = ref('orders');
-            const shopOpen = ref(true);
-            const passcode = ref('');
-            const currentTable = ref(null);
-            const cart = ref([]);
-            const activeOrders = ref([]);
-            const salesHistory = ref([]);
-            const orderId = ref(1);
-            const currentOrderStatus = ref('Received');
-            const currentOrderRef = ref(null);
-
-            // Mock Data
-            const tables = [
-                { id: "01", desc: "Window-side, garden view.", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuD2hLgoY0mMerMfFIQsQOqlIiJU5R1fiortLJk_6JqexaCpfvxpdFcXjg575ZelAhSk96z-nBduFUVmLMFd1sS1KKSDn2ZWf7AqRHqwLP1Ed2XiWK3D_DGQrL_McNs2QgBjwAb791eNND0tFJ1xehrMp7zyuiBZeg9H2JdKOz0T3umP_9EqeqFLwwYuVdJZ33k-vU_OLxgiTC9VKMbjkDZesFSeqE0wJ_CukKQFHhqM-JimoiftQFR3j-NJrxClMvk872JpcqWxoSA" },
-                { id: "05", desc: "Central Grand Table.", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCrr86QUftx6ObyWMxTnHKLTJGS6RV4G0yU3iBYqZ1v5EQsfKkQFZ00D97PXil7F7zB86FSNmYNcaV1rTIqlt351WWEoT1649ClhYeRx4IF8OS6t7f5i39H1gS-oQXxVkvANrQNPt3mUqBBTJrCW2paM4GeHncqxng51MBLXHXmrtquxFC76vAqSXrXFUbxDSr0xQaoFkbRLmZbFoompJvc1cXKaM7yWkUGju8vglnNp_c2RGPz6j-Z2v5kekLDqExKE1nQvd0VgaA" },
-                { id: "08", desc: "Chef's Private Alcove.", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAK_OqUDUp5pNGUaFYeOrlIWt1XPR7ZF3OPtXxUPlvdDoPMgxbmsQ_JMDX8rt2bGyjZZLPI2jf6iblgFKdCGYEeJQvVsZZ25l0uW8HlOFN9FsBMKjve71Ja5MBlI_gr8ZAKoc9maIejqqts6_tTBFPEF2wdjL6ekDDDIV-d-YztR_7pAmLTVOYuSekBEuRIpQAScHvSZz9e3ZGeuU54jxSQTwu5IV3h-nw_UV92YuPDMRXYtLnxeOmIfKc3YDKJA00LSXErI_JSqdo" }
-            ];
-
-            const menu = {
-                "Steak": [
-                    { name: "Wagyu Ribeye A5", desc: "Garlic and peppercorn marinated.", price: 2490, img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCLNIh9OVQCcNzjS0j313QOUJqoPVbjucmda3bHpM0oSnhRDWLCNBFJGC5pGdA3pnA1vffhRLwhXyi98qyRhZcZfB7PGgziiKH2Vc-0iNdmGsRASUCQPJTDiiPMtbFWb5qnzzPiGZHFP-AMAS0GmKO54rgXNnwCAMU
+<nav class="flex flex-col gap-1">
+<button class="flex items-center gap-3 px-4 py-3 rounded-xl bg-amber-50 text-amber-900 font-bold border-r-4 border-amber-600 transition-transform scale-95 duration-200">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm tracking-tight">Dashboard</span>
+</button>
+<button class="flex items-center gap-3 px-4 py-3 rounded-xl text-stone-400 hover:bg-amber-50 transition-transform scale-95 duration-200">
+<span class="material-symbols-outlined">event_seat</span>
+<span class="text-sm tracking-tight">Reservations</span>
+</button>
+<button class="flex items-center gap-3 px-4 py-3 rounded-xl text-stone-400 hover:bg-amber-50 transition-transform scale-95 duration-200">
+<span class="material-symbols-outlined">restaurant_menu</span>
+<span class="text-sm tracking-tight">Live Orders</span>
+</button>
+<button class="flex items-center gap-3 px-4 py-3 rounded-xl text-stone-400 hover:bg-amber-50 transition-transform scale-95 duration-200">
+<span class="material-symbols-outlined">skillet</span>
+<span class="text-sm tracking-tight">Kitchen</span>
+</button>
+</nav>
+<button class="mt-auto bg-primary text-on-primary py-3 px-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">add</span>
+            New Reservation
+        </button>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 pt-20 pb-24 px-4 md:px-8 max-w-7xl mx-auto min-h-screen">
+<!-- View 1: Table Selection (Active View) -->
+<section class="space-y-8 animate-fade-in" id="view-table-selection">
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="space-y-1">
+<h1 class="headline-md serif text-3xl font-light text-on-surface">Welcome, <span class="italic">Guest</span></h1>
+<p class="text-on-surface-variant font-medium">Please select your sanctuary for this evening.</p>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/20">
+<div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+<span class="label-md font-semibold uppercase tracking-wider text-green-700">Service: Live</span>
+</div>
+</header>
+<!-- Bento Grid of Tables -->
+<div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+<!-- Table Card 1 -->
+<div class="relative group cursor-pointer aspect-square bg-surface-container-lowest border border-outline-variant/10 rounded-3xl p-6 flex flex-col justify-between transition-all hover:border-primary/30 hover:bg-surface shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
+<div class="flex justify-between items-start">
+<span class="text-4xl font-serif text-primary/20 group-hover:text-primary/40 transition-colors">01</span>
+<span class="material-symbols-outlined text-primary/40">table_bar</span>
+</div>
+<div>
+<h3 class="text-lg font-bold">The Alcove</h3>
+<p class="text-sm text-on-surface-variant">2-4 Guests</p>
+</div>
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity"></div>
+</div>
+<!-- Table Card 2 -->
+<div class="relative group cursor-pointer aspect-square bg-surface-container-low border border-outline-variant/10 rounded-3xl p-6 flex flex-col justify-between opacity-60">
+<div class="flex justify-between items-start">
+<span class="text-4xl font-serif text-primary/10">02</span>
+<span class="material-symbols-outlined text-primary/20">lock</span>
+</div>
+<div>
+<h3 class="text-lg font-bold">Window View</h3>
+<p class="text-sm text-on-surface-variant">Occupied</p>
+</div>
+</div>
+<!-- Table Card 3 -->
+<div class="relative group cursor-pointer aspect-square bg-surface-container-lowest border border-outline-variant/10 rounded-3xl p-6 flex flex-col justify-between transition-all hover:border-primary/30 hover:bg-surface shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
+<div class="flex justify-between items-start">
+<span class="text-4xl font-serif text-primary/20 group-hover:text-primary/40 transition-colors">03</span>
+<span class="material-symbols-outlined text-primary/40">deck</span>
+</div>
+<div>
+<h3 class="text-lg font-bold">Garden Wing</h3>
+<p class="text-sm text-on-surface-variant">2 Guests</p>
+</div>
+</div>
+<!-- Table Card 4 -->
+<div class="relative group cursor-pointer aspect-square bg-surface-container-lowest border border-outline-variant/10 rounded-3xl p-6 flex flex-col justify-between transition-all hover:border-primary/30 hover:bg-surface shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
+<div class="flex justify-between items-start">
+<span class="text-4xl font-serif text-primary/20 group-hover:text-primary/40 transition-colors">04</span>
+<span class="material-symbols-outlined text-primary/40">group</span>
+</div>
+<div>
+<h3 class="text-lg font-bold">Grand Table</h3>
+<p class="text-sm text-on-surface-variant">6-8 Guests</p>
+</div>
+</div>
+<!-- Table Card 5 -->
+<div class="relative group cursor-pointer aspect-square bg-surface-container-lowest border border-outline-variant/10 rounded-3xl p-6 flex flex-col justify-between transition-all hover:border-primary/30 hover:bg-surface shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
+<div class="flex justify-between items-start">
+<span class="text-4xl font-serif text-primary/20 group-hover:text-primary/40 transition-colors">05</span>
+<span class="material-symbols-outlined text-primary/40">table_restaurant</span>
+</div>
+<div>
+<h3 class="text-lg font-bold">The Vault</h3>
+<p class="text-sm text-on-surface-variant">2 Guests</p>
+</div>
+</div>
+<!-- Table Card 6 -->
+<div class="relative group cursor-pointer aspect-square bg-surface-container-lowest border border-outline-variant/10 rounded-3xl p-6 flex flex-col justify-between transition-all hover:border-primary/30 hover:bg-surface shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
+<div class="flex justify-between items-start">
+<span class="text-4xl font-serif text-primary/20 group-hover:text-primary/40 transition-colors">06</span>
+<span class="material-symbols-outlined text-primary/40">private_connectivity</span>
+</div>
+<div>
+<h3 class="text-lg font-bold">Library Nook</h3>
+<p class="text-sm text-on-surface-variant">1-2 Guests</p>
+</div>
+</div>
+</div>
+</section>
+<!-- View 2: Menu (Hidden by default, triggered by Table Selection) -->
+<section class="hidden space-y-12 animate-fade-in" id="view-menu">
+<header class="flex flex-col gap-6">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<div>
+<h2 class="headline-md serif text-2xl font-light">The Gourmet Collection</h2>
+<p class="text-sm text-on-surface-variant uppercase tracking-widest font-semibold">Table 01 - The Alcove</p>
+</div>
+</div>
+<!-- Category Scroll -->
+<div class="flex gap-4 overflow-x-auto hide-scrollbar pb-2">
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-primary/20 whitespace-nowrap">Steak</button>
+<button class="bg-surface-container-low text-on-surface px-6 py-2.5 rounded-full text-sm font-semibold whitespace-nowrap border border-outline-variant/10">One-dish</button>
+<button class="bg-surface-container-low text-on-surface px-6 py-2.5 rounded-full text-sm font-semibold whitespace-nowrap border border-outline-variant/10">Drinks</button>
+<button class="bg-surface-container-low text-on-surface px-6 py-2.5 rounded-full text-sm font-semibold whitespace-nowrap border border-outline-variant/10">Desserts</button>
+</div>
+</header>
+<!-- Menu Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Steak Pork -->
+<div class="bg-surface-container-low rounded-[2rem] overflow-hidden flex flex-col md:flex-row shadow-[0_12px_40px_rgba(119,90,25,0.04)]">
+<div class="w-full md:w-40 h-40 md:h-auto overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Gourmet grilled pork steak with rosemary garnish on a dark stone plate, soft professional lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9_sq2ysIK04fmm4LZ_QE_sbZ1VhJ6CEU0qrPh6FmNjb-BUguhI62_5w9Pdu5CxobTD5r_Q7lI5CPDeKhtzQK58ywSdT1-gDSZWZ2THZAgIQ94L2tiKN-h-xFK6ryv2l0KsAFsGt9J0AyNnvPutYK4FyyZhsW_cGvGR7XP1CEIBr-0Pg1BWEl7j2UuerYd6QBsXxyWcLJt5EBmLl2qMiY182BYBoij2W78b1l7b2JgfXxsYRk21l5Cw8B2_mKNK4EqVbX_IuzbfA4"/>
+</div>
+<div class="p-6 flex flex-col justify-between flex-1">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-lg">Signature Pork Steak</h3>
+<span class="label-md font-bold text-primary">249B</span>
+</div>
+<p class="text-sm text-on-surface-variant line-clamp-2">Slow-cooked tenderloin glazed with honey-balsamic reduction served with seasonal root vegetables.</p>
+</div>
+<div class="mt-6 flex justify-end">
+<button class="group flex items-center bg-surface-container-lowest border border-primary/20 rounded-full px-4 py-1.5 transition-all hover:bg-primary-fixed">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Steak Chicken -->
+<div class="bg-surface-container-low rounded-[2rem] overflow-hidden flex flex-col md:flex-row shadow-[0_12px_40px_rgba(119,90,25,0.04)]">
+<div class="w-full md:w-40 h-40 md:h-auto overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Roasted lemon herb chicken breast sliced on a white plate with roasted asparagus, elegant restaurant style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAboZ0vcA8F_V4eDEeL5pfIaroIyruwfrIXRrfzLsqiIpr6Hq40L8USuIn0AVLuu7PoA5sF8iYFhBH63xnL_04t_p-Q1rfNv9l_0KrqHpZhzr50EwEbiIPqxQeAvxL0_pO-zBesyhhkOpFwwQlI9kFk-pH2JmSJklebDx7wgooPBuqueDaBVik27kZZm0emfaz0WRDT4RfkzYKkHIbBiLnRAkEhgQhxYtVzf-VxLsUqwyHlqUiaZPFsPhHlT12AMrhBh0RyW1w_u9g"/>
+</div>
+<div class="p-6 flex flex-col justify-between flex-1">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-lg">Lemon Herb Chicken</h3>
+<span class="label-md font-bold text-primary">249B</span>
+</div>
+<p class="text-sm text-on-surface-variant line-clamp-2">Pan-seared breast infused with thyme and Meyer lemon, served on a bed of truffle mash.</p>
+</div>
+<div class="mt-6 flex justify-end">
+<button class="flex items-center gap-3 bg-primary-fixed/30 rounded-full px-3 py-1.5">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/10 rounded-full">remove</span>
+<span class="font-bold text-sm text-on-primary-container">1</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/10 rounded-full">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- One-dish Section Headline -->
+<div class="pt-8 border-t border-outline-variant/10">
+<h3 class="headline-sm serif text-xl mb-6">One-Dish Specialties</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex items-center gap-4 p-4 bg-surface-container-lowest border border-outline-variant/5 rounded-2xl">
+<div class="w-20 h-20 bg-surface-container rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Steaming bowl of artisan fish porridge with fresh herbs and ginger slivers, minimal white aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkIw69eLzzyANQnSsfYWD6JfSfCjJn48-VAa1l8n12aIp9TXp02-j-RDYU_uUXk_uL4WxL6yC5MHtLtETsiAlBbovK8gxkkSD_zthbMVU7-OIwWPXCwiJzsXU96x0eDJR8Up-HFX2-saYBROxvOouCPppraAYFLTUImnIrgcfqkjJfrfWbPiot0ThKT_DbmDJyQNNwg1uXJbqtdI3EkSMwR3IdQSqO0PhVA2TJiFugvbWvnpd7g6r1uYI6C-bzMLAIMgkwX72gcYc"/>
+</div>
+<div class="flex-1">
+<h4 class="font-bold">Traditional Fish Porridge</h4>
+<p class="text-xs text-on-surface-variant">Jasmine rice, snapper, ginger</p>
+<span class="text-sm font-bold text-primary mt-1 block">79B</span>
+</div>
+<button class="bg-primary/5 p-2 rounded-full text-primary hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<div class="flex items-center gap-4 p-4 bg-surface-container-lowest border border-outline-variant/5 rounded-2xl">
+<div class="w-20 h-20 bg-surface-container rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Luxury fried rice with jumbo prawns and gold leaf garnish, high-end presentation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyCXx_-sKNN9Ob_fTugjtU6ifSXR7A3fSR9poUbbRXxL1tUd7La4aMnhRWW93Mh0lnA9O0qKOp2czlnhprf-NdSiN7Cukn05Sm5bmOIb8Y6_ah0a9vwfsP2n9-8KP6yoiyauQbwlVMZp5-R_bR_eIOJRfEfdaSH07p8LDBlwaNNOIX5sgVJgx9UHSQp317oDhMONStyjkxYjop-GTaIgs2K-Z4DfZIppzxPKBHKAmZPyt8awNAiizxOYHuYz7blO_lzYMuYaQhtVc"/>
+</div>
+<div class="flex-1">
+<h4 class="font-bold">Signature Fried Rice</h4>
+<p class="text-xs text-on-surface-variant">Select: Shrimp / Squid / Crab</p>
+<span class="text-sm font-bold text-primary mt-1 block">From 85B</span>
+</div>
+<button class="bg-primary/5 p-2 rounded-full text-primary hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- View 4: Kitchen (Example of management view) -->
+<section class="hidden space-y-8 animate-fade-in" id="view-kitchen">
+<header class="flex justify-between items-center">
+<h2 class="headline-md serif text-2xl font-light">Kitchen Pass</h2>
+<span class="label-md font-bold px-4 py-1.5 bg-amber-100 text-amber-900 rounded-full">PIN: 9999</span>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Order Card 1 -->
+<div class="bg-surface-container-lowest border-l-4 border-amber-600 rounded-xl p-6 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-bold text-lg">Table 01</h3>
+<p class="text-xs text-on-surface-variant">Order #0001 • 19:42</p>
+</div>
+<span class="px-3 py-1 bg-amber-50 text-amber-700 text-[10px] uppercase font-bold tracking-widest rounded-full">Received</span>
+</div>
+<ul class="space-y-3 mb-6">
+<li class
