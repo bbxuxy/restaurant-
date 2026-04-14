@@ -1,332 +1,310 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
+<html lang="th"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
-<title>The Ephemeral Gourmet - Unified Master App</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Ephemeral Gourmet - Dining Experience</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "inverse-primary": "#e9c176",
-                        "background": "#fbf9f5",
-                        "secondary-fixed-dim": "#d7c4a5",
-                        "primary": "#775a19",
-                        "surface": "#fbf9f5",
-                        "surface-tint": "#775a19",
-                        "surface-container-low": "#f5f3ef",
-                        "inverse-surface": "#30312e",
-                        "surface-container": "#efeeea",
-                        "on-surface": "#1b1c1a",
-                        "on-error": "#ffffff",
-                        "on-primary-container": "#4e3700",
-                        "on-tertiary-fixed-variant": "#304671",
-                        "surface-container-high": "#eae8e4",
-                        "primary-fixed": "#ffdea5",
-                        "error": "#ba1a1a",
-                        "on-tertiary-container": "#233a65",
-                        "on-secondary-container": "#716248",
-                        "tertiary": "#485e8b",
-                        "on-primary": "#ffffff",
-                        "secondary-fixed": "#f4e0bf",
-                        "on-background": "#1b1c1a",
-                        "on-secondary": "#ffffff",
-                        "on-primary-fixed-variant": "#5d4201",
-                        "tertiary-fixed": "#d8e2ff",
-                        "primary-fixed-dim": "#e9c176",
-                        "tertiary-container": "#8fa5d6",
-                        "surface-dim": "#dbdad6",
-                        "error-container": "#ffdad6",
-                        "on-tertiary-fixed": "#001a41",
-                        "surface-container-lowest": "#ffffff",
-                        "surface-variant": "#e4e2de",
-                        "inverse-on-surface": "#f2f0ed",
-                        "outline": "#7f7667",
-                        "on-surface-variant": "#4e4639",
-                        "surface-container-highest": "#e4e2de",
-                        "on-secondary-fixed": "#241a06",
-                        "primary-container": "#c5a059",
-                        "on-secondary-fixed-variant": "#52452d",
-                        "on-tertiary": "#ffffff",
-                        "on-error-container": "#93000a",
-                        "surface-bright": "#fbf9f5",
-                        "tertiary-fixed-dim": "#b0c6f9",
-                        "secondary-container": "#f4e0bf",
-                        "outline-variant": "#d1c5b4",
-                        "on-primary-fixed": "#261900",
-                        "secondary": "#6b5c43"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "fontFamily": {
-                        "headline": ["Noto Serif"],
-                        "body": ["Manrope"],
-                        "label": ["Manrope"]
-                    }
-                }
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#775a19",
+                    "on-primary-container": "#4e3700",
+                    "on-surface-variant": "#4e4639",
+                    "on-primary-fixed-variant": "#5d4201",
+                    "surface": "#fbf9f5",
+                    "primary-container": "#c5a059",
+                    "tertiary-container": "#8fa5d6",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#eae8e4",
+                    "surface-container": "#efeeea",
+                    "inverse-surface": "#30312e",
+                    "surface-bright": "#fbf9f5",
+                    "secondary": "#6b5c43",
+                    "outline-variant": "#d1c5b4",
+                    "primary-fixed": "#ffdea5",
+                    "surface-dim": "#dbdad6",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#261900",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#233a65",
+                    "surface-variant": "#e4e2de",
+                    "tertiary-fixed": "#d8e2ff",
+                    "secondary-fixed": "#f4e0bf",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1b1c1a",
+                    "outline": "#7f7667",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e4e2de",
+                    "primary-fixed-dim": "#e9c176",
+                    "inverse-on-surface": "#f2f0ed",
+                    "secondary-fixed-dim": "#d7c4a5",
+                    "secondary-container": "#f4e0bf",
+                    "on-tertiary-fixed": "#001a41",
+                    "background": "#fbf9f5",
+                    "surface-container-low": "#f5f3ef",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#485e8b",
+                    "primary": "#775a19",
+                    "on-background": "#1b1c1a",
+                    "tertiary-fixed-dim": "#b0c6f9",
+                    "on-secondary-fixed-variant": "#52452d",
+                    "on-secondary-container": "#716248",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#304671",
+                    "on-secondary-fixed": "#241a06",
+                    "inverse-primary": "#e9c176"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
             }
-        }
+          },
+        },
+      }
     </script>
 <style>
-        body { font-family: 'Manrope', sans-serif; background-color: #fbf9f5; }
-        .serif { font-family: 'Noto Serif', serif; }
+        body { font-family: 'Manrope', sans-serif; }
+        .font-noto-serif { font-family: 'Noto Serif', serif; }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
-        .glass { background: rgba(251, 249, 245, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .tonal-layering { background: linear-gradient(to bottom, transparent, rgba(239, 238, 234, 0.5)); }
     </style>
-</head>
-<body class="text-on-surface">
-<!-- Top Navigation Anchor (Desktop Only) -->
-<nav class="fixed top-0 w-full border-b border-amber-200/20 bg-stone-50/80 dark:bg-stone-900/80 backdrop-blur-md shadow-[0_8px_24px_rgba(119,90,25,0.06)] h-16 px-8 flex justify-between items-center z-50">
-<div class="text-xl font-serif italic text-amber-800 dark:text-amber-400">The Ephemeral Gourmet</div>
-<div class="hidden md:flex gap-8 items-center">
-<a class="text-amber-800 dark:text-amber-300 border-b-2 border-amber-600 dark:border-amber-400 font-medium font-serif font-light tracking-wide py-2" href="#">Order Management</a>
-<a class="text-stone-500 dark:text-stone-400 hover:text-amber-700 transition-colors font-serif font-light tracking-wide py-2" href="#">Shop Management</a>
-<a class="text-stone-500 dark:text-stone-400 hover:text-amber-700 transition-colors font-serif font-light tracking-wide py-2" href="#">Sales Statistics</a>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-stone-50/80 dark:bg-stone-900/80 backdrop-blur-md border-b border-stone-200/30 dark:border-stone-800/30 shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-6 h-16 w-full max-w-md mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-700 dark:text-amber-500" data-icon="restaurant">restaurant</span>
+<h1 class="text-lg font-bold text-amber-800 dark:text-amber-400 font-noto-serif">The Ephemeral Gourmet</h1>
 </div>
-<div class="flex gap-4">
-<span class="material-symbols-outlined text-stone-500 cursor-pointer p-2 hover:bg-stone-100/50 rounded-full transition-all">notifications</span>
-<span class="material-symbols-outlined text-stone-500 cursor-pointer p-2 hover:bg-stone-100/50 rounded-full transition-all">account_circle</span>
+<div class="flex items-center gap-2 px-3 py-1 bg-amber-50 rounded-full border border-amber-200/50">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-xs font-bold text-amber-800">เปิดให้บริการ</span>
 </div>
-</nav>
-<!-- Side Navigation Anchor (Desktop Only) -->
-<aside class="hidden lg:flex fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-stone-50 border-r border-amber-100/10 flex-col py-6 px-4 gap-4 z-40">
-<div class="px-2 mb-4">
-<h2 class="font-serif text-amber-800 text-lg">Maitre d' Console</h2>
-<p class="text-stone-400 text-xs uppercase tracking-widest font-semibold">Evening Service</p>
-</div>
-<nav class="flex flex-col gap-1">
-<button class="flex items-center gap-3 px-4 py-3 rounded-xl bg-amber-50 text-amber-900 font-bold border-r-4 border-amber-600 transition-transform scale-95 duration-200">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="text-sm tracking-tight">Dashboard</span>
-</button>
-<button class="flex items-center gap-3 px-4 py-3 rounded-xl text-stone-400 hover:bg-amber-50 transition-transform scale-95 duration-200">
-<span class="material-symbols-outlined">event_seat</span>
-<span class="text-sm tracking-tight">Reservations</span>
-</button>
-<button class="flex items-center gap-3 px-4 py-3 rounded-xl text-stone-400 hover:bg-amber-50 transition-transform scale-95 duration-200">
-<span class="material-symbols-outlined">restaurant_menu</span>
-<span class="text-sm tracking-tight">Live Orders</span>
-</button>
-<button class="flex items-center gap-3 px-4 py-3 rounded-xl text-stone-400 hover:bg-amber-50 transition-transform scale-95 duration-200">
-<span class="material-symbols-outlined">skillet</span>
-<span class="text-sm tracking-tight">Kitchen</span>
-</button>
-</nav>
-<button class="mt-auto bg-primary text-on-primary py-3 px-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
-<span class="material-symbols-outlined">add</span>
-            New Reservation
-        </button>
-</aside>
-<!-- Main Content Canvas -->
-<main class="lg:ml-64 pt-20 pb-24 px-4 md:px-8 max-w-7xl mx-auto min-h-screen">
-<!-- View 1: Table Selection (Active View) -->
-<section class="space-y-8 animate-fade-in" id="view-table-selection">
-<header class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-<div class="space-y-1">
-<h1 class="headline-md serif text-3xl font-light text-on-surface">Welcome, <span class="italic">Guest</span></h1>
-<p class="text-on-surface-variant font-medium">Please select your sanctuary for this evening.</p>
-</div>
-<div class="flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/20">
-<div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-<span class="label-md font-semibold uppercase tracking-wider text-green-700">Service: Live</span>
 </div>
 </header>
-<!-- Bento Grid of Tables -->
-<div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+<main class="max-w-md mx-auto px-4 pt-20">
+<!-- Welcome Section -->
+<section class="mt-4 mb-8">
+<h2 class="text-3xl font-noto-serif font-bold text-on-surface mb-2">ยินดีต้อนรับ</h2>
+<p class="text-on-surface-variant font-body leading-relaxed">กรุณาเลือกโต๊ะที่ท่านต้องการเพื่อเริ่มสั่งอาหารมื้อพิเศษ</p>
+</section>
+<!-- Table Selection Bento Grid -->
+<section class="mb-10">
+<div class="grid grid-cols-3 gap-3">
 <!-- Table Card 1 -->
-<div class="relative group cursor-pointer aspect-square bg-surface-container-lowest border border-outline-variant/10 rounded-3xl p-6 flex flex-col justify-between transition-all hover:border-primary/30 hover:bg-surface shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
-<div class="flex justify-between items-start">
-<span class="text-4xl font-serif text-primary/20 group-hover:text-primary/40 transition-colors">01</span>
-<span class="material-symbols-outlined text-primary/40">table_bar</span>
-</div>
-<div>
-<h3 class="text-lg font-bold">The Alcove</h3>
-<p class="text-sm text-on-surface-variant">2-4 Guests</p>
-</div>
-<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity"></div>
-</div>
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-surface-container-lowest border-2 border-primary ring-2 ring-primary ring-offset-2 transition-all active:scale-95 shadow-md">
+<span class="text-primary font-bold text-lg mb-1">T-01</span>
+<span class="text-[10px] uppercase tracking-widest text-primary font-bold">เลือกแล้ว</span>
+</button>
 <!-- Table Card 2 -->
-<div class="relative group cursor-pointer aspect-square bg-surface-container-low border border-outline-variant/10 rounded-3xl p-6 flex flex-col justify-between opacity-60">
-<div class="flex justify-between items-start">
-<span class="text-4xl font-serif text-primary/10">02</span>
-<span class="material-symbols-outlined text-primary/20">lock</span>
-</div>
-<div>
-<h3 class="text-lg font-bold">Window View</h3>
-<p class="text-sm text-on-surface-variant">Occupied</p>
-</div>
-</div>
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-surface-container-low border border-outline-variant/30 transition-all active:scale-95">
+<span class="text-on-surface-variant font-bold text-lg mb-1">T-02</span>
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant/60">ว่าง</span>
+</button>
 <!-- Table Card 3 -->
-<div class="relative group cursor-pointer aspect-square bg-surface-container-lowest border border-outline-variant/10 rounded-3xl p-6 flex flex-col justify-between transition-all hover:border-primary/30 hover:bg-surface shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
-<div class="flex justify-between items-start">
-<span class="text-4xl font-serif text-primary/20 group-hover:text-primary/40 transition-colors">03</span>
-<span class="material-symbols-outlined text-primary/40">deck</span>
-</div>
-<div>
-<h3 class="text-lg font-bold">Garden Wing</h3>
-<p class="text-sm text-on-surface-variant">2 Guests</p>
-</div>
-</div>
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-surface-container-low border border-outline-variant/30 transition-all active:scale-95">
+<span class="text-on-surface-variant font-bold text-lg mb-1">T-03</span>
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant/60">ว่าง</span>
+</button>
 <!-- Table Card 4 -->
-<div class="relative group cursor-pointer aspect-square bg-surface-container-lowest border border-outline-variant/10 rounded-3xl p-6 flex flex-col justify-between transition-all hover:border-primary/30 hover:bg-surface shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
-<div class="flex justify-between items-start">
-<span class="text-4xl font-serif text-primary/20 group-hover:text-primary/40 transition-colors">04</span>
-<span class="material-symbols-outlined text-primary/40">group</span>
-</div>
-<div>
-<h3 class="text-lg font-bold">Grand Table</h3>
-<p class="text-sm text-on-surface-variant">6-8 Guests</p>
-</div>
-</div>
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-surface-container-high opacity-50 cursor-not-allowed">
+<span class="text-on-surface-variant font-bold text-lg mb-1">T-04</span>
+<span class="text-[10px] uppercase tracking-widest text-error">ไม่ว่าง</span>
+</button>
 <!-- Table Card 5 -->
-<div class="relative group cursor-pointer aspect-square bg-surface-container-lowest border border-outline-variant/10 rounded-3xl p-6 flex flex-col justify-between transition-all hover:border-primary/30 hover:bg-surface shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
-<div class="flex justify-between items-start">
-<span class="text-4xl font-serif text-primary/20 group-hover:text-primary/40 transition-colors">05</span>
-<span class="material-symbols-outlined text-primary/40">table_restaurant</span>
-</div>
-<div>
-<h3 class="text-lg font-bold">The Vault</h3>
-<p class="text-sm text-on-surface-variant">2 Guests</p>
-</div>
-</div>
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-surface-container-low border border-outline-variant/30 transition-all active:scale-95">
+<span class="text-on-surface-variant font-bold text-lg mb-1">T-05</span>
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant/60">ว่าง</span>
+</button>
 <!-- Table Card 6 -->
-<div class="relative group cursor-pointer aspect-square bg-surface-container-lowest border border-outline-variant/10 rounded-3xl p-6 flex flex-col justify-between transition-all hover:border-primary/30 hover:bg-surface shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
-<div class="flex justify-between items-start">
-<span class="text-4xl font-serif text-primary/20 group-hover:text-primary/40 transition-colors">06</span>
-<span class="material-symbols-outlined text-primary/40">private_connectivity</span>
+<button class="flex flex-col items-center justify-center p-4 rounded-xl bg-surface-container-low border border-outline-variant/30 transition-all active:scale-95">
+<span class="text-on-surface-variant font-bold text-lg mb-1">T-06</span>
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant/60">ว่าง</span>
+</button>
 </div>
-<div>
-<h3 class="text-lg font-bold">Library Nook</h3>
-<p class="text-sm text-on-surface-variant">1-2 Guests</p>
+</section>
+<!-- Menu Categories -->
+<section class="mb-8 overflow-x-auto whitespace-nowrap -mx-4 px-4 no-scrollbar">
+<button class="inline-flex items-center px-5 py-2 bg-primary text-on-primary rounded-full mr-2 shadow-lg shadow-primary/20">
+<span class="text-sm font-bold">เมนูแนะนำ</span>
+</button>
+<button class="inline-flex items-center px-5 py-2 bg-surface-container-low text-on-surface-variant rounded-full mr-2">
+<span class="text-sm">สเต็ก</span>
+</button>
+<button class="inline-flex items-center px-5 py-2 bg-surface-container-low text-on-surface-variant rounded-full mr-2">
+<span class="text-sm">อาหารจานเดียว</span>
+</button>
+<button class="inline-flex items-center px-5 py-2 bg-surface-container-low text-on-surface-variant rounded-full">
+<span class="text-sm">เครื่องดื่ม</span>
+</button>
+</section>
+<!-- Menu Items List -->
+<section class="space-y-6">
+<!-- Item 1 -->
+<div class="flex gap-4 items-center bg-surface-container-low p-3 rounded-2xl">
+<div class="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="succulent medium-rare ribeye steak with rosemary garnish on a dark artisanal ceramic plate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtFcBX2OG9r9yq8cMiGKi5cD9ZmD4HCr8-CjIhWiWza65pNB4FgflGbyqPWFN9H6NrsxkGLKVsGHl1W_sRlqWgEnFTtH5BkwiXLHv_ct0dhik4zv8_JOTeCb4-0MHJECfi_zmxVfyF1eLKCIG9qpX6qp_2LSzB8oLHbYduMorxuf-7DvpCy7fDSQsDvfkbf1ZaP0ipmc_Yxny0F0Lt-qKRdCDuSpE6FP2eqERic46GvKT3Ludm52X0O6nV0ln-LHElstOtI3NLinM"/>
+</div>
+<div class="flex-grow">
+<h3 class="text-lg font-bold text-on-surface leading-tight">สเต็กเนื้อริบอายพรีเมียม</h3>
+<p class="text-sm text-on-surface-variant mb-2">เนื้อนุ่ม ละลายในปาก เสิร์ฟคู่ซอสไวน์แดง</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-lg font-noto-serif">฿ 590</span>
+<div class="flex items-center bg-surface-container-lowest rounded-full p-1 border border-outline-variant/30">
+<button class="w-8 h-8 rounded-full bg-primary-container/20 text-primary flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+</button>
+<span class="px-3 font-bold text-sm">1</span>
+<button class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-4 items-center bg-surface-container-low p-3 rounded-2xl">
+<div class="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="vibrant healthy salad bowl with roasted vegetables quinoa and fresh greens in a minimal white kitchen setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGsn2A0zgPTG81qJJF3Zv_6Iav9R0nHaz8rXfSVfkqNDy_SASwgq3mrrdJoW18dirzPKLWPngn8YCaIkkdiAiXrtOP5CzhZV3EWG4qR89V5yUXP-7SAuqr5BW9xZOoIQIy4iNrk6oKnUkV1wF__5iCAKf9V9ZHv-fzU2j1_Ntn0BXlMJq98D8KIoKp3oRHugaYL3lM7rAPXihKnYHguCoWf3GFiOT6YAZaR387JgXCOoOwjCs35VCVST20QbPZzBIB1JYh02g_1Ek"/>
+</div>
+<div class="flex-grow">
+<h3 class="text-lg font-bold text-on-surface leading-tight">สลัดผักออร์แกนิค</h3>
+<p class="text-sm text-on-surface-variant mb-2">ผักสดจากฟาร์มท้องถิ่น ราดน้ำสลัดงา</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-lg font-noto-serif">฿ 180</span>
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-full text-sm font-bold active:scale-95 transition-all">สั่งเลย</button>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex gap-4 items-center bg-surface-container-low p-3 rounded-2xl">
+<div class="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="close-up of a chilled artisan coffee drink with beautiful foam layer on a textured stone surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDEtRjJytBmIuCJs7IDE3-7tk9nsAzbdX1ceLVfAeGOo-zYksVWMUHesE46GD7r7Xch3z4LM6a8eHSXB5xxK06W0KDMBhLwWWgmrA2z-pdTkywJF5xQoQ3f_HTScynsQ5NChk8x2sKrjk8waftMigjTUzkX3bcYkhgGzWZTy99OzACGCDy23NkT_bes9aMUupOT316HVhvMEqhCzpg06Fm4cjagN4B2Ig-rWzfywxg6J5Vpu4sQLKvpqDe3spfvjNy8-r1YQmcjZI"/>
+</div>
+<div class="flex-grow">
+<h3 class="text-lg font-bold text-on-surface leading-tight">กาแฟดริปพรีเมียม</h3>
+<p class="text-sm text-on-surface-variant mb-2">เมล็ดกาแฟคั่วกลาง กลิ่นหอมเป็นเอกลักษณ์</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold text-lg font-noto-serif">฿ 120</span>
+<button class="bg-primary text-on-primary px-4 py-1.5 rounded-full text-sm font-bold active:scale-95 transition-all">สั่งเลย</button>
 </div>
 </div>
 </div>
 </section>
-<!-- View 2: Menu (Hidden by default, triggered by Table Selection) -->
-<section class="hidden space-y-12 animate-fade-in" id="view-menu">
-<header class="flex flex-col gap-6">
-<div class="flex items-center gap-4">
-<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors">
-<span class="material-symbols-outlined">arrow_back_ios_new</span>
-</button>
+</main>
+<!-- Queue Status Popup (Overlay) - Mock Hidden -->
+<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm z-[100] flex items-center justify-center p-6 hidden">
+<div class="bg-surface-container-lowest w-full rounded-3xl p-8 shadow-2xl text-center">
+<span class="material-symbols-outlined text-5xl text-primary mb-4" data-icon="restaurant_menu">restaurant_menu</span>
+<h4 class="text-sm font-bold text-primary tracking-[0.2em] uppercase mb-2">คิวของคุณ</h4>
+<div class="text-6xl font-noto-serif font-bold text-on-surface mb-4">Q-042</div>
+<div class="bg-primary-container/10 border border-primary-container/30 rounded-xl py-3 px-4 mb-6">
+<p class="text-on-primary-container font-medium">กำลังเตรียมอาหาร...</p>
+</div>
+<button class="w-full py-4 bg-surface-container-high text-on-surface-variant/40 rounded-full font-bold transition-all" disabled="">
+                เรียบร้อย (รอสักครู่)
+            </button>
+</div>
+</div>
+<!-- Confirmation Modal - Mock Hidden -->
+<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm z-[100] flex items-end justify-center hidden">
+<div class="bg-surface-container-lowest w-full rounded-t-3xl p-6 shadow-2xl max-w-md">
+<h4 class="text-xl font-noto-serif font-bold mb-4">ยืนยันการจองโต๊ะ?</h4>
+<p class="text-on-surface-variant mb-6">คุณได้เลือกโต๊ะ T-01 ท่านต้องการเริ่มสั่งอาหารเลยหรือไม่?</p>
+<div class="flex gap-3">
+<button class="flex-1 py-3 bg-surface-container-low text-on-surface-variant rounded-xl font-bold">ยกเลิก</button>
+<button class="flex-1 py-3 bg-primary text-on-primary rounded-xl font-bold shadow-lg shadow-primary/20">จองโต๊ะ</button>
+</div>
+</div>
+</div>
+<!-- Floating Cart Bar (Signature Component) -->
+<div class="fixed bottom-24 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-sm z-40">
+<div class="bg-surface-container-lowest/80 backdrop-blur-xl border-[1.5px] border-primary-fixed rounded-2xl p-3 shadow-[0_8px_24px_rgba(119,90,25,0.12)] flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="shopping_basket">shopping_basket</span>
+</div>
 <div>
-<h2 class="headline-md serif text-2xl font-light">The Gourmet Collection</h2>
-<p class="text-sm text-on-surface-variant uppercase tracking-widest font-semibold">Table 01 - The Alcove</p>
+<p class="text-xs font-bold text-primary uppercase tracking-wider">ตะกร้าของคุณ</p>
+<p class="text-sm font-bold text-on-surface">1 รายการ | ฿ 590</p>
 </div>
 </div>
-<!-- Category Scroll -->
-<div class="flex gap-4 overflow-x-auto hide-scrollbar pb-2">
-<button class="bg-primary text-on-primary px-6 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-primary/20 whitespace-nowrap">Steak</button>
-<button class="bg-surface-container-low text-on-surface px-6 py-2.5 rounded-full text-sm font-semibold whitespace-nowrap border border-outline-variant/10">One-dish</button>
-<button class="bg-surface-container-low text-on-surface px-6 py-2.5 rounded-full text-sm font-semibold whitespace-nowrap border border-outline-variant/10">Drinks</button>
-<button class="bg-surface-container-low text-on-surface px-6 py-2.5 rounded-full text-sm font-semibold whitespace-nowrap border border-outline-variant/10">Desserts</button>
+<button class="bg-primary-container text-on-primary-container px-5 py-2 rounded-xl font-bold text-sm active:scale-95 transition-all">ดูตะกร้า</button>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-stone-50/80 dark:bg-stone-900/80 backdrop-blur-md border-t border-amber-200/20 dark:border-amber-900/20 shadow-[0_-8px_24px_rgba(119,90,25,0.06)] flex justify-around items-center px-4 pb-6 pt-3">
+<a class="flex flex-col items-center justify-center bg-amber-100/50 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 rounded-xl px-6 py-2 transition-transform duration-300 cubic-bezier(0.4,0,0.2,1) active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="restaurant_menu">restaurant_menu</span>
+<span class="font-manrope text-[12px] uppercase tracking-wider mt-1">หน้าหลัก</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-500 px-6 py-2 hover:text-amber-600 transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="countertops">countertops</span>
+<span class="font-manrope text-[12px] uppercase tracking-wider mt-1">ห้องครัว</span>
+</a>
+</nav>
+<!-- Kitchen / Admin Panel - Section (Usually would be a different page, but as single page app, mock it) -->
+<!-- This section would show up if "Kitchen" is active -->
+<div class="hidden max-w-md mx-auto px-4 pt-20">
+<header class="flex justify-between items-center mb-8">
+<h2 class="text-2xl font-noto-serif font-bold">ระบบจัดการหลังบ้าน</h2>
+<div class="flex gap-2">
+<button class="bg-error/10 text-error px-4 py-2 rounded-full text-xs font-bold border border-error/20">ปิดร้าน</button>
+<button class="bg-green-500 text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg shadow-green-500/20">เปิดร้าน</button>
 </div>
 </header>
-<!-- Menu Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-<!-- Steak Pork -->
-<div class="bg-surface-container-low rounded-[2rem] overflow-hidden flex flex-col md:flex-row shadow-[0_12px_40px_rgba(119,90,25,0.04)]">
-<div class="w-full md:w-40 h-40 md:h-auto overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="Gourmet grilled pork steak with rosemary garnish on a dark stone plate, soft professional lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9_sq2ysIK04fmm4LZ_QE_sbZ1VhJ6CEU0qrPh6FmNjb-BUguhI62_5w9Pdu5CxobTD5r_Q7lI5CPDeKhtzQK58ywSdT1-gDSZWZ2THZAgIQ94L2tiKN-h-xFK6ryv2l0KsAFsGt9J0AyNnvPutYK4FyyZhsW_cGvGR7XP1CEIBr-0Pg1BWEl7j2UuerYd6QBsXxyWcLJt5EBmLl2qMiY182BYBoij2W78b1l7b2JgfXxsYRk21l5Cw8B2_mKNK4EqVbX_IuzbfA4"/>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-3 mb-8">
+<div class="bg-surface-container-lowest p-4 rounded-2xl border border-outline-variant/20">
+<p class="text-xs text-on-surface-variant mb-1">ยอดขายวันนี้</p>
+<p class="text-xl font-bold text-primary">฿ 12,450</p>
 </div>
-<div class="p-6 flex flex-col justify-between flex-1">
-<div>
-<div class="flex justify-between items-start mb-2">
-<h3 class="font-bold text-lg">Signature Pork Steak</h3>
-<span class="label-md font-bold text-primary">249B</span>
-</div>
-<p class="text-sm text-on-surface-variant line-clamp-2">Slow-cooked tenderloin glazed with honey-balsamic reduction served with seasonal root vegetables.</p>
-</div>
-<div class="mt-6 flex justify-end">
-<button class="group flex items-center bg-surface-container-lowest border border-primary/20 rounded-full px-4 py-1.5 transition-all hover:bg-primary-fixed">
-<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">add</span>
-</button>
+<div class="bg-surface-container-lowest p-4 rounded-2xl border border-outline-variant/20">
+<p class="text-xs text-on-surface-variant mb-1">จำนวนออเดอร์</p>
+<p class="text-xl font-bold text-primary">48 บิล</p>
 </div>
 </div>
-</div>
-<!-- Steak Chicken -->
-<div class="bg-surface-container-low rounded-[2rem] overflow-hidden flex flex-col md:flex-row shadow-[0_12px_40px_rgba(119,90,25,0.04)]">
-<div class="w-full md:w-40 h-40 md:h-auto overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="Roasted lemon herb chicken breast sliced on a white plate with roasted asparagus, elegant restaurant style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAboZ0vcA8F_V4eDEeL5pfIaroIyruwfrIXRrfzLsqiIpr6Hq40L8USuIn0AVLuu7PoA5sF8iYFhBH63xnL_04t_p-Q1rfNv9l_0KrqHpZhzr50EwEbiIPqxQeAvxL0_pO-zBesyhhkOpFwwQlI9kFk-pH2JmSJklebDx7wgooPBuqueDaBVik27kZZm0emfaz0WRDT4RfkzYKkHIbBiLnRAkEhgQhxYtVzf-VxLsUqwyHlqUiaZPFsPhHlT12AMrhBh0RyW1w_u9g"/>
-</div>
-<div class="p-6 flex flex-col justify-between flex-1">
-<div>
-<div class="flex justify-between items-start mb-2">
-<h3 class="font-bold text-lg">Lemon Herb Chicken</h3>
-<span class="label-md font-bold text-primary">249B</span>
-</div>
-<p class="text-sm text-on-surface-variant line-clamp-2">Pan-seared breast infused with thyme and Meyer lemon, served on a bed of truffle mash.</p>
-</div>
-<div class="mt-6 flex justify-end">
-<button class="flex items-center gap-3 bg-primary-fixed/30 rounded-full px-3 py-1.5">
-<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/10 rounded-full">remove</span>
-<span class="font-bold text-sm text-on-primary-container">1</span>
-<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/10 rounded-full">add</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-<!-- One-dish Section Headline -->
-<div class="pt-8 border-t border-outline-variant/10">
-<h3 class="headline-sm serif text-xl mb-6">One-Dish Specialties</h3>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="flex items-center gap-4 p-4 bg-surface-container-lowest border border-outline-variant/5 rounded-2xl">
-<div class="w-20 h-20 bg-surface-container rounded-xl overflow-hidden flex-shrink-0">
-<img class="w-full h-full object-cover" data-alt="Steaming bowl of artisan fish porridge with fresh herbs and ginger slivers, minimal white aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkIw69eLzzyANQnSsfYWD6JfSfCjJn48-VAa1l8n12aIp9TXp02-j-RDYU_uUXk_uL4WxL6yC5MHtLtETsiAlBbovK8gxkkSD_zthbMVU7-OIwWPXCwiJzsXU96x0eDJR8Up-HFX2-saYBROxvOouCPppraAYFLTUImnIrgcfqkjJfrfWbPiot0ThKT_DbmDJyQNNwg1uXJbqtdI3EkSMwR3IdQSqO0PhVA2TJiFugvbWvnpd7g6r1uYI6C-bzMLAIMgkwX72gcYc"/>
-</div>
-<div class="flex-1">
-<h4 class="font-bold">Traditional Fish Porridge</h4>
-<p class="text-xs text-on-surface-variant">Jasmine rice, snapper, ginger</p>
-<span class="text-sm font-bold text-primary mt-1 block">79B</span>
-</div>
-<button class="bg-primary/5 p-2 rounded-full text-primary hover:bg-primary/10 transition-colors">
-<span class="material-symbols-outlined">add</span>
-</button>
-</div>
-<div class="flex items-center gap-4 p-4 bg-surface-container-lowest border border-outline-variant/5 rounded-2xl">
-<div class="w-20 h-20 bg-surface-container rounded-xl overflow-hidden flex-shrink-0">
-<img class="w-full h-full object-cover" data-alt="Luxury fried rice with jumbo prawns and gold leaf garnish, high-end presentation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyCXx_-sKNN9Ob_fTugjtU6ifSXR7A3fSR9poUbbRXxL1tUd7La4aMnhRWW93Mh0lnA9O0qKOp2czlnhprf-NdSiN7Cukn05Sm5bmOIb8Y6_ah0a9vwfsP2n9-8KP6yoiyauQbwlVMZp5-R_bR_eIOJRfEfdaSH07p8LDBlwaNNOIX5sgVJgx9UHSQp317oDhMONStyjkxYjop-GTaIgs2K-Z4DfZIppzxPKBHKAmZPyt8awNAiizxOYHuYz7blO_lzYMuYaQhtVc"/>
-</div>
-<div class="flex-1">
-<h4 class="font-bold">Signature Fried Rice</h4>
-<p class="text-xs text-on-surface-variant">Select: Shrimp / Squid / Crab</p>
-<span class="text-sm font-bold text-primary mt-1 block">From 85B</span>
-</div>
-<button class="bg-primary/5 p-2 rounded-full text-primary hover:bg-primary/10 transition-colors">
-<span class="material-symbols-outlined">add</span>
-</button>
-</div>
-</div>
-</div>
-</section>
-<!-- View 4: Kitchen (Example of management view) -->
-<section class="hidden space-y-8 animate-fade-in" id="view-kitchen">
-<header class="flex justify-between items-center">
-<h2 class="headline-md serif text-2xl font-light">Kitchen Pass</h2>
-<span class="label-md font-bold px-4 py-1.5 bg-amber-100 text-amber-900 rounded-full">PIN: 9999</span>
-</header>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<h3 class="font-bold text-lg mb-4">ออเดอร์ล่าสุด</h3>
+<div class="space-y-4">
 <!-- Order Card 1 -->
-<div class="bg-surface-container-lowest border-l-4 border-amber-600 rounded-xl p-6 shadow-sm">
-<div class="flex justify-between items-start mb-4">
+<div class="bg-surface-container-lowest p-4 rounded-2xl border border-outline-variant/20 shadow-sm">
+<div class="flex justify-between items-start mb-3">
 <div>
-<h3 class="font-bold text-lg">Table 01</h3>
-<p class="text-xs text-on-surface-variant">Order #0001 • 19:42</p>
+<span class="text-xs font-bold text-primary-container bg-primary-container/10 px-2 py-0.5 rounded">T-01</span>
+<h4 class="font-bold mt-1">Order #242</h4>
 </div>
-<span class="px-3 py-1 bg-amber-50 text-amber-700 text-[10px] uppercase font-bold tracking-widest rounded-full">Received</span>
+<span class="text-[10px] text-on-surface-variant">10:45 AM</span>
 </div>
-<ul class="space-y-3 mb-6">
-<li class
+<div class="space-y-1 mb-4">
+<p class="text-sm">1x สเต็กเนื้อริบอาย</p>
+<p class="text-sm">2x น้ำดื่มขวดเล็ก</p>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-2 bg-primary/10 text-primary rounded-lg text-xs font-bold">รับออเดอร์</button>
+<button class="flex-1 py-2 bg-surface-container-high text-on-surface-variant rounded-lg text-xs font-bold">เสร็จสิ้น</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>
