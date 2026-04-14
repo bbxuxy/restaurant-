@@ -6,7 +6,6 @@
 <title>The Ephemeral Gourmet</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
         tailwind.config = {
@@ -84,195 +83,86 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
         .tab-active { color: #775a19; font-weight: 700; background-color: rgba(197, 160, 89, 0.2); border-radius: 0.75rem; }
+        .view-transition { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .fade-out { opacity: 0; transform: scale(0.95); transition: opacity 2s ease, transform 2s ease; }
     </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
-<body class="bg-surface text-on-surface">
+</head>
+<body class="bg-surface text-on-surface min-h-[100dvh]">
 <!-- Top App Bar -->
 <header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-stone-900/80 backdrop-blur-md border-b border-[#c5a059]/30 shadow-[0_8px_24px_rgba(119,90,25,0.06)] flex justify-between items-center px-6 h-16">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-[#775a19] dark:text-[#c5a059]">restaurant</span>
 <h1 class="font-['Noto_Serif'] font-bold text-lg text-[#775a19] dark:text-[#c5a059] italic tracking-tight">The Ephemeral Gourmet</h1>
 </div>
-<button class="text-[#775a19] dark:text-[#c5a059] font-medium hover:opacity-80 transition-opacity">Open</button>
+<div class="text-[#775a19] font-bold text-sm" id="shop-status-indicator">Open</div>
 </header>
-<main class="pt-20 pb-28 min-h-screen px-4">
-<!-- View 1: Table Selection (Initial State) -->
-<section class="max-w-md mx-auto" id="table-view">
+<main class="pt-20 pb-28 min-h-screen px-4 overflow-x-hidden">
+<!-- Shop Closed View -->
+<section class="hidden max-w-md mx-auto text-center pt-20" id="closed-view">
+<span class="material-symbols-outlined text-7xl text-error mb-4">do_not_disturb_on</span>
+<h2 class="serif text-3xl font-bold mb-2">ขออภัย ร้านปิดบริการ</h2>
+<p class="text-on-surface-variant">เราปิดรับออเดอร์ในขณะนี้ โปรดกลับมาใหม่ภายหลัง</p>
+</section>
+<!-- View 1: Table Selection -->
+<section class="max-w-md mx-auto view-transition" id="table-view">
 <div class="mb-8 text-center">
 <h2 class="serif text-3xl font-bold mb-2">ยินดีต้อนรับ</h2>
 <p class="text-on-surface-variant">กรุณาเลือกโต๊ะเพื่อเริ่มสั่งอาหาร</p>
 </div>
-<div class="grid grid-cols-2 gap-4">
-<button class="h-32 bg-surface-container-lowest rounded-xl border border-outline-variant/30 flex flex-col items-center justify-center gap-2 hover:bg-secondary-container/20 transition-all group" onclick="selectTable('T-01')">
-<span class="text-sm font-label uppercase tracking-widest text-outline">Table</span>
-<span class="serif text-4xl font-bold text-primary">01</span>
-</button>
-<button class="h-32 bg-surface-container-lowest rounded-xl border border-outline-variant/30 flex flex-col items-center justify-center gap-2 hover:bg-secondary-container/20 transition-all" onclick="selectTable('T-02')">
-<span class="text-sm font-label uppercase tracking-widest text-outline">Table</span>
-<span class="serif text-4xl font-bold text-primary">02</span>
-</button>
-<button class="h-32 bg-surface-container-lowest rounded-xl border border-outline-variant/30 flex flex-col items-center justify-center gap-2 hover:bg-secondary-container/20 transition-all" onclick="selectTable('T-03')">
-<span class="text-sm font-label uppercase tracking-widest text-outline">Table</span>
-<span class="serif text-4xl font-bold text-primary">03</span>
-</button>
-<button class="h-32 bg-surface-container-lowest rounded-xl border border-outline-variant/30 flex flex-col items-center justify-center gap-2 hover:bg-secondary-container/20 transition-all" onclick="selectTable('T-04')">
-<span class="text-sm font-label uppercase tracking-widest text-outline">Table</span>
-<span class="serif text-4xl font-bold text-primary">04</span>
-</button>
-<button class="h-32 bg-surface-container-lowest rounded-xl border border-outline-variant/30 flex flex-col items-center justify-center gap-2 hover:bg-secondary-container/20 transition-all" onclick="selectTable('T-05')">
-<span class="text-sm font-label uppercase tracking-widest text-outline">Table</span>
-<span class="serif text-4xl font-bold text-primary">05</span>
-</button>
-<button class="h-32 bg-surface-container-lowest rounded-xl border border-outline-variant/30 flex flex-col items-center justify-center gap-2 hover:bg-secondary-container/20 transition-all" onclick="selectTable('T-06')">
-<span class="text-sm font-label uppercase tracking-widest text-outline">Table</span>
-<span class="serif text-4xl font-bold text-primary">06</span>
-</button>
+<div class="grid grid-cols-2 gap-4" id="table-grid">
+<!-- Tables generated via JS -->
 </div>
 </section>
-<!-- View 2: Menu List (Hidden Initial) -->
-<section class="hidden max-w-md mx-auto" id="menu-view">
+<!-- View 2: Menu List -->
+<section class="hidden max-w-md mx-auto view-transition" id="menu-view">
 <div class="flex items-center justify-between mb-6">
 <div>
 <h2 class="serif text-2xl font-bold">เมนูอาหาร</h2>
-<p class="text-primary font-bold text-sm tracking-widest" id="active-table-label">TABLE T-01</p>
+<p class="text-primary font-bold text-sm tracking-widest" id="active-table-label">TABLE -</p>
 </div>
 <div class="bg-surface-container-high rounded-full px-4 py-1 text-sm font-bold text-on-surface-variant">
                     Open
                 </div>
 </div>
+<!-- Categories -->
+<div class="space-y-10" id="menu-categories-container">
 <!-- Category: Main Course -->
-<div class="mb-10">
+<div>
 <h3 class="serif text-lg font-bold mb-4 flex items-center gap-2">
 <span class="material-symbols-outlined text-primary">restaurant_menu</span>
-                    อาหารจานหลัก
-                </h3>
-<div class="space-y-6">
-<!-- Item 1: Steak -->
-<div class="flex gap-4 items-start">
-<div class="w-24 h-24 rounded-2xl overflow-hidden bg-surface-container flex-shrink-0">
-<img class="w-full h-full object-cover" data-alt="Close up of a premium grilled ribeye steak with rosemary garnish on a dark plate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUdqPPXprRqa6UXDTit2E__mRdtqiyK4NjGehSQoTT94rHaOE37L0liN18y8ddSDy7SQNEwunClQpMOFhPoRIWCh3nSQzjvCUozvckUVVk0A5OdI2rKM1bzvwUqVpxoI9p2p3-CoTnJtO83095uw8OZ2aqrXpJV8vbazzO_-ELwfp4qe2ut-rXOCaB8-KUz3xjb6UKRflnYG9SfMRnh7dZk-SLhyMJYqqJQEMbVhSLWP9Eql_rpHZmtTwre0tUeaTRy_cEtxAPZgU"/>
-</div>
-<div class="flex-1">
-<h4 class="font-bold text-lg">สเต็กเนื้อพรีเมียม</h4>
-<p class="text-sm text-on-surface-variant mb-2">เนื้อนุ่ม ย่างเตาถ่าน เสิร์ฟพร้อมเครื่องเคียง</p>
-<div class="flex items-center justify-between">
-<span class="text-primary font-bold">249฿</span>
-<div class="flex items-center gap-3 bg-surface-container-high rounded-full px-2 py-1">
-<button class="w-8 h-8 flex items-center justify-center text-primary" onclick="updateCart('steak', -1)">-</button>
-<span class="font-bold text-sm min-w-[1rem] text-center" id="qty-steak">0</span>
-<button class="w-8 h-8 flex items-center justify-center text-primary" onclick="updateCart('steak', 1)">+</button>
-</div>
-</div>
-</div>
-</div>
-<!-- Item 2: Fish Porridge -->
-<div class="flex gap-4 items-start">
-<div class="w-24 h-24 rounded-2xl overflow-hidden bg-surface-container flex-shrink-0">
-<img class="w-full h-full object-cover" data-alt="Traditional asian fish congee porridge in a ceramic bowl with ginger and green onion garnish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACV90dTWK_NFN2pDbgSYKFBhr4jOm0A3f-TmDmQNnDTh4-cadxrnmqD56okMHoGYmrR-f7wPIbQzxDEJvXLXqUx25TEwMXNxIlEIlEp0dW0GalQluIqZ4wb1XXQdZwvMOFPSlRhIsOsGXfTvemmaHOCKmkaSsDvB9cyDg2y4Ni9t5p0JXCc0ZHLgX9h6bbaGrvADeRduHQCCETH4ry2x9c7MDHmeLc3O5_N1odNtik5sNxLjsfiEjipF5Ns1ME4z_uupv834kumNg"/>
-</div>
-<div class="flex-1">
-<h4 class="font-bold text-lg">ข้าวต้มปลาโบราณ</h4>
-<p class="text-sm text-on-surface-variant mb-2">สูตรต้นตำรับ น้ำซุปกลมกล่อม ปลาสดใหม่</p>
-<div class="flex items-center justify-between">
-<span class="text-primary font-bold">79฿</span>
-<div class="flex items-center gap-3 bg-surface-container-high rounded-full px-2 py-1">
-<button class="w-8 h-8 flex items-center justify-center text-primary" onclick="updateCart('porridge', -1)">-</button>
-<span class="font-bold text-sm min-w-[1rem] text-center" id="qty-porridge">0</span>
-<button class="w-8 h-8 flex items-center justify-center text-primary" onclick="updateCart('porridge', 1)">+</button>
-</div>
-</div>
-</div>
-</div>
-<!-- Item 3: Fried Rice with Options -->
-<div class="bg-surface-container-low p-4 rounded-2xl border border-outline-variant/10">
-<div class="flex gap-4 items-start mb-4">
-<div class="w-24 h-24 rounded-xl overflow-hidden bg-surface-container flex-shrink-0">
-<img class="w-full h-full object-cover" data-alt="Thai style seafood fried rice with fresh lime and cucumber on the side" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk1AKPC0X4myhlgMczkFV7Yl45CM8QWCHbETQq9uwATnw918kFmDX7hC3SZDNOt4oA9yUUYCmUjSsMqK_2m7JobZHR2tJfKwFXx4sw53BWePq-IgUNvNONzuK7KERxLCu4GXI1UULE4y-ryRFu6jCTcyoEEh2BHZFp_7kK8gXGhD4aEPAGEFyIG5m7ooNzZNWv0g4YCdSJblHa7eKLwWPaPECy2wg7Gfce1I1x9QWVQlV1OClvf_F6hlTdDDWUAROpEQyC65nOULw"/>
-</div>
-<div class="flex-1">
-<h4 class="font-bold text-lg">ข้าวผัด (เลือกหน้า)</h4>
-<p class="text-sm text-on-surface-variant">ข้าวหอมมะลิผัดไฟแรง หอมกลิ่นกระทะ</p>
-<span class="text-primary font-bold">89฿</span>
-</div>
-</div>
-<div class="grid grid-cols-3 gap-2 mb-4">
-<button class="text-[11px] uppercase py-2 rounded-lg border border-primary/20 bg-white text-center font-bold" id="opt-squid" onclick="selectFriedRice('squid')">หมึก</button>
-<button class="text-[11px] uppercase py-2 rounded-lg border border-primary/20 bg-white text-center font-bold" id="opt-shrimp" onclick="selectFriedRice('shrimp')">กุ้ง</button>
-<button class="text-[11px] uppercase py-2 rounded-lg border border-primary/20 bg-white text-center font-bold" id="opt-crab" onclick="selectFriedRice('crab')">ปู</button>
-</div>
-<div class="flex items-center justify-end">
-<div class="flex items-center gap-3 bg-surface-container-highest rounded-full px-2 py-1">
-<button class="w-8 h-8 flex items-center justify-center text-primary" onclick="updateCart('friedrice', -1)">-</button>
-<span class="font-bold text-sm min-w-[1rem] text-center" id="qty-friedrice">0</span>
-<button class="w-8 h-8 flex items-center justify-center text-primary" onclick="updateCart('friedrice', 1)">+</button>
-</div>
-</div>
-</div>
+                        อาหารจานหลัก
+                    </h3>
+<div class="space-y-6" id="main-course-list">
+<!-- Items generated via JS -->
 </div>
 </div>
 <!-- Category: Drinks -->
-<div class="mb-10">
+<div>
 <h3 class="serif text-lg font-bold mb-4 flex items-center gap-2">
 <span class="material-symbols-outlined text-primary">local_bar</span>
-                    เครื่องดื่ม
-                </h3>
-<div class="grid grid-cols-1 gap-4">
-<div class="flex items-center justify-between p-3 bg-surface-container-lowest rounded-xl">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-outline">water_drop</span>
-<span class="font-bold text-sm">น้ำเปล่า (10฿)</span>
-</div>
-<div class="flex items-center gap-3">
-<button class="w-8 h-8 flex items-center justify-center text-primary" onclick="updateCart('water', -1)">-</button>
-<span class="font-bold text-sm min-w-[1rem] text-center" id="qty-water">0</span>
-<button class="w-8 h-8 flex items-center justify-center text-primary" onclick="updateCart('water', 1)">+</button>
-</div>
-</div>
-<div class="flex items-center justify-between p-3 bg-surface-container-lowest rounded-xl">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-outline">ac_unit</span>
-<span class="font-bold text-sm">น้ำแข็ง (10฿)</span>
-</div>
-<div class="flex items-center gap-3">
-<button class="w-8 h-8 flex items-center justify-center text-primary" onclick="updateCart('ice', -1)">-</button>
-<span class="font-bold text-sm min-w-[1rem] text-center" id="qty-ice">0</span>
-<button class="w-8 h-8 flex items-center justify-center text-primary" onclick="updateCart('ice', 1)">+</button>
-</div>
-</div>
-<div class="flex items-center justify-between p-3 bg-surface-container-lowest rounded-xl">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-outline">glass_cup</span>
-<span class="font-bold text-sm">เป๊ปซี่ (35฿)</span>
-</div>
-<div class="flex items-center gap-3">
-<button class="w-8 h-8 flex items-center justify-center text-primary" onclick="updateCart('pepsi', -1)">-</button>
-<span class="font-bold text-sm min-w-[1rem] text-center" id="qty-pepsi">0</span>
-<button class="w-8 h-8 flex items-center justify-center text-primary" onclick="updateCart('pepsi', 1)">+</button>
-</div>
+                        เครื่องดื่ม
+                    </h3>
+<div class="grid grid-cols-1 gap-4" id="drinks-list">
+<!-- Items generated via JS -->
 </div>
 </div>
 </div>
 </section>
-<!-- View 3: Admin (Hidden Initial) -->
-<section class="hidden max-w-md mx-auto" id="admin-view">
+<!-- View 3: Admin -->
+<section class="hidden max-w-md mx-auto view-transition" id="admin-view">
 <div class="flex items-center justify-between mb-8">
 <h2 class="serif text-2xl font-bold">Kitchen Dashboard</h2>
-<button class="px-4 py-2 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase tracking-tighter" id="shop-toggle" onclick="toggleShop()">Shop Open</button>
+<button class="px-4 py-2 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase tracking-tighter" id="shop-toggle-btn" onclick="toggleShop()">Shop Open</button>
 </div>
 <!-- Stats -->
 <div class="grid grid-cols-2 gap-4 mb-8">
 <div class="p-4 bg-primary-container/20 rounded-2xl border border-primary/20">
 <p class="text-[10px] uppercase font-bold text-primary mb-1">Daily Sales</p>
-<p class="text-2xl font-bold text-primary">฿2,450</p>
+<p class="text-2xl font-bold text-primary" id="admin-daily-sales">฿0</p>
 </div>
 <div class="p-4 bg-surface-container-high rounded-2xl">
 <p class="text-[10px] uppercase font-bold text-outline mb-1">Orders Today</p>
-<p class="text-2xl font-bold">14</p>
+<p class="text-2xl font-bold" id="admin-order-count">0</p>
 </div>
 </div>
 <!-- Order List -->
@@ -281,8 +171,8 @@
 </div>
 </section>
 </main>
-<!-- Floating Cart Bar (Signature Component) -->
-<div class="hidden fixed bottom-24 left-1/2 -translate-x-1/2 w-[90%] max-w-sm glass-panel bg-white/80 border border-[#ffdea5]/40 rounded-full h-16 shadow-[0_8px_24px_rgba(119,90,25,0.06)] flex items-center justify-between px-6 z-40 transition-all" id="cart-bar">
+<!-- Floating Cart Bar -->
+<div class="hidden fixed bottom-24 left-1/2 -translate-x-1/2 w-[90%] max-w-sm glass-panel bg-white/80 border border-[#ffdea5]/40 rounded-full h-16 shadow-[0_8px_24px_rgba(119,90,25,0.06)] flex items-center justify-between px-6 z-40 transition-all translate-y-24" id="cart-bar">
 <div class="flex flex-col">
 <span class="text-[10px] uppercase font-bold text-primary tracking-widest">Total Items</span>
 <span class="text-sm font-bold" id="total-count-label">0 Items</span>
@@ -293,25 +183,25 @@
 </div>
 <!-- Bottom Navigation Bar -->
 <nav class="fixed bottom-0 left-0 w-full z-50 bg-white/80 dark:bg-stone-900/80 backdrop-blur-md rounded-t-3xl border-t border-[#c5a059]/30 flex justify-around items-center pt-2 pb-6 px-8 shadow-[0_-4px_20px_rgba(119,90,25,0.05)]">
-<button class="flex flex-col items-center justify-center bg-[#c5a059]/20 text-[#775a19] dark:text-[#c5a059] rounded-xl px-6 py-1 tap-highlight-transparent active:scale-90 duration-200" id="nav-menu" onclick="switchTab('menu')">
+<button class="flex flex-col items-center justify-center text-[#775a19] rounded-xl px-6 py-1 tab-active" id="nav-menu" onclick="navigateTo('menu')">
 <span class="material-symbols-outlined">restaurant_menu</span>
 <span class="font-['Manrope'] text-[11px] uppercase tracking-wider font-semibold">Menu</span>
 </button>
-<button class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-500 px-6 py-1 hover:text-[#775a19] transition-colors tap-highlight-transparent active:scale-90 duration-200" id="nav-admin" onclick="promptAdmin()">
+<button class="flex flex-col items-center justify-center text-stone-400 px-6 py-1" id="nav-admin" onclick="requestAdminAccess()">
 <span class="material-symbols-outlined">admin_panel_settings</span>
 <span class="font-['Manrope'] text-[11px] uppercase tracking-wider font-semibold">Admin</span>
 </button>
 </nav>
-<!-- Overlay Popups -->
-<!-- Table Selection Overlay -->
-<div class="hidden fixed inset-0 z-[60] flex items-center justify-center p-6 bg-surface/80 backdrop-blur-sm" id="table-modal">
+<!-- Overlays -->
+<!-- Confirmation Popup -->
+<div class="hidden fixed inset-0 z-[60] flex items-center justify-center p-6 bg-surface/80 backdrop-blur-sm transition-opacity" id="confirm-modal">
 <div class="bg-white w-full max-w-sm rounded-3xl p-8 shadow-2xl text-center">
-<span class="material-symbols-outlined text-5xl text-primary mb-4">check_circle</span>
-<h3 class="serif text-2xl font-bold mb-2">ยืนยันเลือกโต๊ะ <span id="modal-table-id"></span>?</h3>
-<p class="text-on-surface-variant mb-8">คุณกำลังจะเริ่มสั่งอาหารสำหรับโต๊ะนี้</p>
+<span class="material-symbols-outlined text-5xl text-primary mb-4" id="confirm-icon">check_circle</span>
+<h3 class="serif text-2xl font-bold mb-2" id="confirm-title">ยืนยันเลือกโต๊ะ?</h3>
+<p class="text-on-surface-variant mb-8" id="confirm-desc">คุณกำลังจะเริ่มสั่งอาหารสำหรับโต๊ะนี้</p>
 <div class="flex gap-4">
-<button class="flex-1 py-4 font-bold text-outline" onclick="closeModal('table-modal')">ยกเลิก</button>
-<button class="flex-1 py-4 bg-primary text-white rounded-2xl font-bold" onclick="confirmTable()">ยืนยัน</button>
+<button class="flex-1 py-4 font-bold text-outline" onclick="closeModal()">ยกเลิก</button>
+<button class="flex-1 py-4 bg-primary text-white rounded-2xl font-bold" id="confirm-btn">ยืนยัน</button>
 </div>
 </div>
 </div>
@@ -320,7 +210,7 @@
 <div class="w-full max-w-xs">
 <div class="mb-12">
 <span class="text-[12px] uppercase tracking-widest text-outline font-bold mb-2 block">Queue Number</span>
-<h2 class="serif text-7xl font-bold text-primary" id="queue-number-display">0001</h2>
+<h2 class="serif text-7xl font-bold text-primary" id="queue-number-display">0000</h2>
 </div>
 <div class="mb-12 space-y-4">
 <div class="flex flex-col items-center gap-2">
@@ -329,4 +219,163 @@
 </div>
 <p class="text-on-surface-variant text-sm px-6">โปรดรอสักครู่ เชฟกำลังจัดเตรียมอาหารจานโปรดของคุณ</p>
 </div>
-<button class="w-full py-4 bg-surface-container-highest text-outline-variant cursor-not-allowed rounded-2xl font-bold transition-all" disab
+<button class="w-full py-4 bg-surface-container-highest text-outline-variant cursor-not-allowed rounded-2xl font-bold transition-all" disabled="" id="status-ok-btn" onclick="resetCustomerView()">
+                ตกลง
+            </button>
+</div>
+</div>
+<script>
+        // --- State Management ---
+        const state = {
+            isShopOpen: true,
+            isAdminMode: false,
+            currentView: 'table', // 'table', 'menu', 'admin', 'closed'
+            selectedTable: null,
+            cart: {}, // {itemId: quantity}
+            activeOrders: [], // Orders in the kitchen
+            history: [], // Completed orders for stats
+            queueCounter: 1,
+            lastPlacedOrderId: null
+        };
+
+        const MENU_ITEMS = [
+            { id: 'steak', name: 'สเต็กเนื้อพรีเมียม', price: 249, category: 'main', desc: 'เนื้อนุ่ม ย่างเตาถ่าน เสิร์ฟพร้อมเครื่องเคียง', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDUdqPPXprRqa6UXDTit2E__mRdtqiyK4NjGehSQoTT94rHaOE37L0liN18y8ddSDy7SQNEwunClQpMOFhPoRIWCh3nSQzjvCUozvckUVVk0A5OdI2rKM1bzvwUqVpxoI9p2p3-CoTnJtO83095uw8OZ2aqrXpJV8vbazzO_-ELwfp4qe2ut-rXOCaB8-KUz3xjb6UKRflnYG9SfMRnh7dZk-SLhyMJYqqJQEMbVhSLWP9Eql_rpHZmtTwre0tUeaTRy_cEtxAPZgU' },
+            { id: 'porridge', name: 'ข้าวต้มปลาโบราณ', price: 79, category: 'main', desc: 'สูตรต้นตำรับ น้ำซุปกลมกล่อม ปลาสดใหม่', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuACV90dTWK_NFN2pDbgSYKFBhr4jOm0A3f-TmDmQNnDTh4-cadxrnmqD56okMHoGYmrR-f7wPIbQzxDEJvXLXqUx25TEwMXNxIlEIlEp0dW0GalQluIqZ4wb1XXQdZwvMOFPSlRhIsOsGXfTvemmaHOCKmkaSsDvB9cyDg2y4Ni9t5p0JXCc0ZHLgX9h6bbaGrvADeRduHQCCETH4ry2x9c7MDHmeLc3O5_N1odNtik5sNxLjsfiEjipF5Ns1ME4z_uupv834kumNg' },
+            { id: 'water', name: 'น้ำเปล่า', price: 10, category: 'drink', icon: 'water_drop' },
+            { id: 'ice', name: 'น้ำแข็ง', price: 10, category: 'drink', icon: 'ac_unit' },
+            { id: 'pepsi', name: 'เป๊ปซี่', price: 35, category: 'drink', icon: 'glass_cup' }
+        ];
+
+        // --- Core Functions ---
+
+        function init() {
+            renderTables();
+            renderMenuItems();
+            updateUI();
+        }
+
+        function renderTables() {
+            const container = document.getElementById('table-grid');
+            container.innerHTML = '';
+            for (let i = 1; i <= 6; i++) {
+                const tableId = `T-${i.toString().padStart(2, '0')}`;
+                const btn = document.createElement('button');
+                btn.className = "h-32 bg-surface-container-lowest rounded-xl border border-outline-variant/30 flex flex-col items-center justify-center gap-2 hover:bg-secondary-container/20 transition-all group";
+                btn.onclick = () => showTableConfirm(tableId);
+                btn.innerHTML = `
+                    <span class="text-sm font-label uppercase tracking-widest text-outline">Table</span>
+                    <span class="serif text-4xl font-bold text-primary">${i.toString().padStart(2, '0')}</span>
+                `;
+                container.appendChild(btn);
+            }
+        }
+
+        function renderMenuItems() {
+            const mainContainer = document.getElementById('main-course-list');
+            const drinksContainer = document.getElementById('drinks-list');
+            mainContainer.innerHTML = '';
+            drinksContainer.innerHTML = '';
+
+            MENU_ITEMS.forEach(item => {
+                const div = document.createElement('div');
+                if (item.category === 'main') {
+                    div.className = "flex gap-4 items-start";
+                    div.innerHTML = `
+                        <div class="w-24 h-24 rounded-2xl overflow-hidden bg-surface-container flex-shrink-0">
+                            <img class="w-full h-full object-cover" src="${item.img}" alt="${item.name}">
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-lg">${item.name}</h4>
+                            <p class="text-sm text-on-surface-variant mb-2">${item.desc}</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-primary font-bold">${item.price}฿</span>
+                                ${getQuantityControls(item.id)}
+                            </div>
+                        </div>
+                    `;
+                    mainContainer.appendChild(div);
+                } else {
+                    div.className = "flex items-center justify-between p-3 bg-surface-container-lowest rounded-xl";
+                    div.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-outline">${item.icon}</span>
+                            <span class="font-bold text-sm">${item.name} (${item.price}฿)</span>
+                        </div>
+                        ${getQuantityControls(item.id)}
+                    `;
+                    drinksContainer.appendChild(div);
+                }
+            });
+        }
+
+        function getQuantityControls(itemId) {
+            const qty = state.cart[itemId] || 0;
+            if (qty === 0) {
+                return `
+                <button onclick="updateCart('${itemId}', 1)" class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full text-primary active:scale-90 transition-transform">
+                    <span class="material-symbols-outlined font-bold">add_shopping_cart</span>
+                </button>`;
+            }
+            return `
+            <div class="flex items-center gap-3 bg-surface-container-high rounded-full px-2 py-1">
+                <button class="w-8 h-8 flex items-center justify-center text-primary font-bold" onclick="updateCart('${itemId}', -1)">-</button>
+                <span class="font-bold text-sm min-w-[1rem] text-center" id="qty-${itemId}">${qty}</span>
+                <button class="w-8 h-8 flex items-center justify-center text-primary font-bold" onclick="updateCart('${itemId}', 1)">+</button>
+            </div>`;
+        }
+
+        function updateCart(itemId, delta) {
+            const current = state.cart[itemId] || 0;
+            const newVal = Math.max(0, current + delta);
+            if (newVal === 0) delete state.cart[itemId];
+            else state.cart[itemId] = newVal;
+            
+            renderMenuItems();
+            updateCartBar();
+        }
+
+        function updateCartBar() {
+            const totalItems = Object.values(state.cart).reduce((a, b) => a + b, 0);
+            const bar = document.getElementById('cart-bar');
+            const label = document.getElementById('total-count-label');
+            
+            label.innerText = `${totalItems} รายการ`;
+            
+            if (totalItems > 0 && state.currentView === 'menu') {
+                bar.classList.remove('hidden', 'translate-y-24');
+            } else {
+                bar.classList.add('translate-y-24');
+                setTimeout(() => { if(totalItems === 0) bar.classList.add('hidden') }, 300);
+            }
+        }
+
+        // --- Navigation & View Control ---
+
+        function navigateTo(view) {
+            if (!state.isShopOpen && view !== 'admin') {
+                view = 'closed';
+            }
+            
+            state.currentView = view;
+            const views = ['table-view', 'menu-view', 'admin-view', 'closed-view'];
+            views.forEach(v => {
+                const el = document.getElementById(v);
+                if (v.startsWith(view)) el.classList.remove('hidden');
+                else el.classList.add('hidden');
+            });
+
+            // Tab highlighting
+            document.getElementById('nav-menu').className = `flex flex-col items-center justify-center px-6 py-1 ${view === 'menu' || view === 'table' ? 'tab-active text-[#775a19]' : 'text-stone-400'}`;
+            document.getElementById('nav-admin').className = `flex flex-col items-center justify-center px-6 py-1 ${view === 'admin' ? 'tab-active text-[#775a19]' : 'text-stone-400'}`;
+
+            updateCartBar();
+            updateUI();
+        }
+
+        function showTableConfirm(tableId) {
+            const modal = document.getElementById('confirm-modal');
+            const title = document.getElementById('confirm-title');
+            const confirmBtn = document.getElementById('confirm-btn');
+            
+            title.innerText = `ยืนยันเลือกโต๊ะ ${tableId}?`;
+            c
